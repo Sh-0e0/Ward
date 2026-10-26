@@ -1,0 +1,17 @@
+# 리눅스 서버용 자동 실행 설정 (systemd)
+# 아래 ubuntu / 경로를 본인 서버에 맞게 바꿔서 /etc/systemd/system/ 에 복사해 쓰세요.
+[Unit]
+Description=Wild Rift scrim Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/wildrift-bot
+ExecStart=/home/ubuntu/wildrift-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
